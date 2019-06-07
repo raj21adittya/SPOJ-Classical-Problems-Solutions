@@ -1,28 +1,17 @@
 //https://www.spoj.com/problems/OLOLO/
 //bl!Nd_m0n3y
 
-#include<bits/stdc++.h>
+ #include <bits/stdc++.h> 
 using namespace std;
+typedef long long LL;
 
-int main()
+int main() {
+	LL n,ans=0,x;
+	scanf("%lld",&n);
+	for(int i=0;i<n;i++)
 	{
-
-	    long long n, i, num, result = 0;
-
-	    cin>>n;
-
-	    for(i=0; i< n; i++)
-
-	    {
-
-	        cin>>num;
-
-	        result = result ^ num;
-
-	    }
-
-	    cout<<result<<endl;
-
-	    return 0;
-
+		scanf("%lld",&x);
+		ans ^= x;
 	}
+	printf("%lld\n",ans);
+}
