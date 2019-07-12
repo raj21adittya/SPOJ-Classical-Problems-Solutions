@@ -2,6 +2,65 @@
 //@bl1nd_m0n3y
 
 
+//reference---https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
+#include<bits/stdc++.h>
+using namespace std;
+
+#define INF 100000000 
+  
+typedef pair<int, int> iPair; 
+
+void addEdge(vector<pair<int,int>> adj[],int u,int v,int w){
+	adj[u].push_back(make_pair(v,w));
+    adj[v].push_back(make_pair(u,w));
+}
+
+void djikstraAlgo(vector<pair<int,int> > adj[],int V,int src,int dest){ 
+    priority_queue< iPair, vector <iPair> , greater<iPair> > pq; 
+    vector<int> dist(V,INF); 
+    pq.push(make_pair(0,src)); 
+    dist[src]=0; 
+    while(!pq.empty()){
+        int u=pq.top().second; 
+        pq.pop();
+        for(auto x:adj[u]){
+            int v=x.first; 
+            int weight=x.second; 
+            if(dist[v]>dist[u]+weight){
+                dist[v]=dist[u]+weight; 
+                pq.push(make_pair(dist[v],v)); 
+            } 
+        } 
+    } 
+    if(dist[dest]!=INF)
+    cout<<dist[dest]<<endl;
+    else
+    cout<<"NONE"<<endl;
+} 
+int main(){
+	
+	int t;
+	cin>>t;
+	while(t--){
+		int n,e,src,dest;
+		cin>>n>>e>>src>>dest;
+		src-=1;
+		dest-=1;
+		vector<iPair> adj[n];
+		for(int i=0;i<e;i++){
+			int u,v,w;
+			cin>>u>>v>>w;
+			u-=1;
+			v-=1;
+			addEdge(adj,u,v,w);
+		}
+		djikstraAlgo(adj,n,src,dest);
+	}
+	
+}
+
+
+
 
 //reference---https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
 //reference---https://www.youtube.com/watch?v=wQIb1NonMIM&list=PL_k8jTXFgD1zlr6mSC-s3mC3UyIVMQ4nw&index=7&t=743s
