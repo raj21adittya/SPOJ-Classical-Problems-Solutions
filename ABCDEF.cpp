@@ -33,6 +33,7 @@ int main(){
 	}
 	sort(vlhs.begin(),vlhs.end());
 	sort(vrhs.begin(),vrhs.end());
+	//use upper..lower..bound instead of binary search cuz there could be multiple search targets present in the array
 	for(int l=0;l<vlhs.size();l++){
 		int x=lower_bound(vrhs.begin(),vrhs.end(),vlhs[l])-vrhs.begin();
 		int y=upper_bound(vrhs.begin(),vrhs.end(),vlhs[l])-vrhs.begin();
